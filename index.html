@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UPI Payment Gateway</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>💸 Make a UPI Payment</h1>
+
+    <!-- UPI QR Image -->
+    <img class="qr" src="upi_qr.png" alt="UPI QR Code" />
+
+    <!-- UPI Clickable Payment Link -->
+    <p>
+      Or <a id="upiLink" href="#" target="_blank">Click to Pay via UPI</a>
+    </p>
+
+    <form action="https://formsubmit.co/abhishekbanshiwal2005@gmail.com" method="POST">
+      <input type="hidden" name="_next" value="success.html" />
+      <input type="hidden" name="_captcha" value="false" />
+
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="number" name="amount" placeholder="Amount (INR)" required />
+      <input type="text" name="utr" placeholder="UTR / Reference Number" required />
+      <input type="text" name="upi_id" placeholder="Your UPI ID (optional)" />
+
+      <button type="submit">Submit Payment Info</button>
+    </form>
+  </div>
+
+  <script>
+    // UPI ID Configuration
+    const payeeVPA = "7877116033@hdfcbank"; // ← CHANGE this to your UPI ID
+    const payeeName = "ABHISHEK BANSHIWAL";   // ← CHANGE this to your name
+    const defaultAmount = "1";           // ← Default amount on click
+
+    const upiURL = `upi://pay?pa=${payeeVPA}&pn=${encodeURIComponent(payeeName)}&cu=INR&am=${defaultAmount}`;
+    document.getElementById("upiLink").href = upiURL;
+  </script>
+</body>
+</html>
